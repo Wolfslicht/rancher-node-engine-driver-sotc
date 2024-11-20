@@ -9,7 +9,7 @@ before:
     - make build-linux
 
 builds:
-  - binary: rancher-node-engine-driver-sotc
+  - binary: docker-machine-driver-otccce
     goos:
       - linux
     goarch:
