@@ -21,7 +21,7 @@ builds:
     mod_timestamp: '{{ .CommitTimestamp }}'
 
 archives:
-  - format: tar.gz
+  - format: tgz
     name_template: "{{ .Binary }}-{{ .Version }}-linux-amd64"
     files: []
     wrap_in_directory: false
