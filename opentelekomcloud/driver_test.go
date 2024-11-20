@@ -37,7 +37,12 @@ func getDriverOpts(t *testing.T) *types.DriverOptions {
 	canonicalOpts, ok := opts.(golangsdk.AuthOptions)
 	require.True(t, ok, "Incorrect auth options provided")
 	stringOptions := map[string]string{
-		"authUrl":              "https://iam.eu-de.otc.t-systems.com/v3",
+		"authUrl":              func() string {
+			if canonicalOpts.Region == "eu-ch2a" || canonicalOpts.Region == "eu-ch2b" {
+				return "https://iam-pub.eu-ch2.sc.otc.t-systems.com/v3"
+			}
+			return "https://iam.eu-de.otc.t-systems.com/v3"
+		}(),
 		"token":                canonicalOpts.TokenID,
 		"authenticationMode":   "rbac",
 		"availabilityZone":     "eu-de-01",
@@ -57,7 +62,7 @@ func getDriverOpts(t *testing.T) *types.DriverOptions {
 		"nodeOs":               "EulerOS 2.9",
 		"password":             canonicalOpts.Password,
 		"projectName":          canonicalOpts.TenantName,
-		"region":               "eu-de",
+		"region":               canonicalOpts.Region,
 		"rootVolumeType":       "SATA",
 		"subnet":               subnetName,
 		"username":             canonicalOpts.Username,
