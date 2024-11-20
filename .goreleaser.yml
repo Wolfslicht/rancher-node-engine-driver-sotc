@@ -6,6 +6,8 @@ before:
   hooks:
     # this is just an example and not a requirement for provider building/publishing
     - go mod tidy
+    - make build-linux
+
 builds:
   - binary: rancher-node-engine-driver-sotc
     goos:
@@ -14,12 +16,19 @@ builds:
       - amd64
     env:
       - CGO_ENABLED=0
+    dir: .
+    main: .
+    ldflags:
+      - -s -w
 
 archives:
   - format: tar.gz
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     files:
-      - bin/*
+      - src: 'bin/*'
+        dst: '.'
+        strip_parent: true
+    wrap_in_directory: false
 
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
