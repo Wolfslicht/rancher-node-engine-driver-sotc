@@ -19,15 +19,13 @@ builds:
     ldflags:
       - -s -w
     mod_timestamp: '{{ .CommitTimestamp }}'
-    binary_name: bin/{{ .Binary }}
 
 archives:
   - format: tgz
-    name_template: "bin/{{ .Binary }}-{{ .Version }}-linux-amd64"
+    name_template: "{{ .Binary }}-{{ .Version }}-linux-amd64"
     files: []
     wrap_in_directory: false
     allow_different_binary_count: true
-    rlcp: true
 
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
