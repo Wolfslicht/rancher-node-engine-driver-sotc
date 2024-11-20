@@ -24,9 +24,10 @@ builds:
 archives:
   - id: driver
     builds: [driver]
-    format: binary
-    name_template: "{{ .Binary }}"
+    format: tar.gz
+    name_template: "{{ .Binary }}-{{ .Version }}-linux-amd64"
     files: []
+    wrap_in_directory: false
     allow_different_binary_count: true
 
 checksum:
