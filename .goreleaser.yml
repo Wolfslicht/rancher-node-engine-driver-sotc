@@ -29,7 +29,7 @@ release:
   # Visit your project's GitHub Releases page to publish this release.
   draft: true
   github:
-    owner: sc-opentelekomcloud
+    owner: wolfslicht
     name: rancher-node-engine-driver-sotc
 
 changelog:
