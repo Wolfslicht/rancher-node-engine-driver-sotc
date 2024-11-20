@@ -1,5 +1,6 @@
 # Visit https://goreleaser.com for documentation on how to customize this
 # behavior.
+version: 2
 project_name: docker-machine-driver-otccce
 before:
   hooks:
@@ -33,24 +34,12 @@ signs:
       - "${artifact}"
 
 release:
-  draft: true
-  github:
-    owner: sc-opentelekomcloud
-    name: rancher-node-engine-driver-sotc
-
-changelog:
-  sort: asc
-  filters:
-    exclude:
-      - '^docs:'
-      - '^test:'
-      - '^Merge'
-release:
   # Visit your project's GitHub Releases page to publish this release.
   draft: true
   github:
     owner: sc-opentelekomcloud
     name: rancher-node-engine-driver-sotc
+
 changelog:
   sort: asc
   filters:
