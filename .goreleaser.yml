@@ -7,7 +7,8 @@ before:
     - go mod tidy
 
 builds:
-  - binary: docker-machine-driver-otccce
+  - id: driver
+    binary: docker-machine-driver-otccce
     goos:
       - linux
     goarch:
@@ -21,10 +22,11 @@ builds:
     mod_timestamp: '{{ .CommitTimestamp }}'
 
 archives:
-  - format: tgz
-    name_template: "{{ .Binary }}-{{ .Version }}-linux-amd64"
+  - id: driver
+    builds: [driver]
+    format: binary
+    name_template: "{{ .Binary }}"
     files: []
-    wrap_in_directory: false
     allow_different_binary_count: true
 
 checksum:
@@ -37,6 +39,8 @@ release:
     owner: wolfslicht
     name: rancher-node-engine-driver-sotc
   name_template: "v{{ .Version }}"
+  extra_files:
+    - glob: ./dist/docker-machine-driver-otccce
 
 changelog:
   sort: asc
