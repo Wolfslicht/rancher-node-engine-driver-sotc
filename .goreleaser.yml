@@ -39,8 +39,6 @@ release:
     owner: wolfslicht
     name: rancher-node-engine-driver-sotc
   name_template: "v{{ .Version }}"
-  extra_files:
-    - glob: ./dist/docker-machine-driver-otccce
 
 changelog:
   sort: asc
