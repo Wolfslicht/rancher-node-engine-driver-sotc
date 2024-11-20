@@ -18,6 +18,7 @@ builds:
     main: .
     ldflags:
       - -s -w
+    mod_timestamp: '{{ .CommitTimestamp }}'
 
 archives:
   - format: tar.gz
@@ -29,8 +30,8 @@ archives:
         format: tar.gz
     wrap_in_directory: false
     allow_different_binary_count: true
-    mode: 0755
-    prefix: ""
+    file_mode: 0755
+    strip_parent: true
 
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
