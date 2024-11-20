@@ -1,6 +1,6 @@
 # Visit https://goreleaser.com for documentation on how to customize this
 # behavior.
-project_name: kontainer-engine-driver-otccce
+project_name: docker-machine-driver-otccce
 before:
   hooks:
     # this is just an example and not a requirement for provider building/publishing
@@ -38,7 +38,7 @@ release:
   # Visit your project's GitHub Releases page to publish this release.
   draft: true
   github:
-    owner: opentelekomcloud
-    name: kontainer-engine-driver-otc
+    owner: sc-opentelekomcloud
+    name: rancher-node-engine-driver-sotc
 changelog:
   skip: true
