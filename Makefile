@@ -52,8 +52,7 @@ release: build-all
 
 goreleaser-release:
 	@if [ -z "$(GITHUB_TOKEN)" ]; then echo "GITHUB_TOKEN is not set"; exit 1; fi
-	@if [ -z "$(GPG_FINGERPRINT)" ]; then echo "GPG_FINGERPRINT is not set"; exit 1; fi
-	goreleaser release --rm-dist
+	goreleaser release --clean
 
 goreleaser-snapshot:
-	goreleaser release --snapshot --rm-dist --skip-publish
+	goreleaser release --snapshot --clean --skip-publish
