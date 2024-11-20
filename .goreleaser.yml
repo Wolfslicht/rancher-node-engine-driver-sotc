@@ -25,11 +25,7 @@ archives:
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     files: []
     wrap_in_directory: false
-    replacements:
-      linux: Linux
-      amd64: x86_64
     allow_different_binary_count: true
-    compression_level: 6
 
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
