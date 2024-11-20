@@ -25,17 +25,15 @@ archives:
   - format: tar.gz
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     files:
-      - src: 'bin/*'
-        dst: '.'
-        strip_parent: true
+      - none*  # Don't include any extra files
     wrap_in_directory: false
+    allow_different_binary_count: true
 
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
   algorithm: sha256
 
 release:
-  # Visit your project's GitHub Releases page to publish this release.
   draft: true
   github:
     owner: wolfslicht
