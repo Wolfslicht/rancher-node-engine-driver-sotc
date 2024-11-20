@@ -30,8 +30,6 @@ archives:
         format: tar.gz
     wrap_in_directory: false
     allow_different_binary_count: true
-    file_mode: 0755
-    strip_parent: true
 
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
