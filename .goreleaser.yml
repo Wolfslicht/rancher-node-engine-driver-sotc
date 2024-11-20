@@ -6,27 +6,24 @@ before:
     # this is just an example and not a requirement for provider building/publishing
     - go mod tidy
 builds:
-  - env:
-      # goreleaser does not work with CGO, it could also complicate
-      # usage by users in CI/CD systems like Terraform Cloud where
-      # they are unable to install libraries.
-      - CGO_ENABLED=0
-    mod_timestamp: '{{ .CommitTimestamp }}'
-    flags:
-      - -trimpath
-    ldflags:
-      - '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}}'
+  - binary: rancher-node-engine-driver-sotc
     goos:
       - linux
     goarch:
       - amd64
-    binary: '{{ .ProjectName }}'
+    env:
+      - CGO_ENABLED=0
+
 archives:
   - format: tar.gz
-    name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - bin/*
+
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
   algorithm: sha256
+
 signs:
   - artifacts: checksum
     args:
@@ -34,6 +31,20 @@ signs:
       - "${signature}"
       - "--detach-sign"
       - "${artifact}"
+
+release:
+  draft: true
+  github:
+    owner: sc-opentelekomcloud
+    name: rancher-node-engine-driver-sotc
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^Merge'
 release:
   # Visit your project's GitHub Releases page to publish this release.
   draft: true
@@ -41,4 +52,9 @@ release:
     owner: sc-opentelekomcloud
     name: rancher-node-engine-driver-sotc
 changelog:
-  skip: true
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^Merge' 
