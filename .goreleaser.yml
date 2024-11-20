@@ -4,9 +4,7 @@ version: 2
 project_name: docker-machine-driver-otccce
 before:
   hooks:
-    # this is just an example and not a requirement for provider building/publishing
     - go mod tidy
-    - make build-linux
 
 builds:
   - binary: docker-machine-driver-otccce
@@ -25,9 +23,14 @@ archives:
   - format: tar.gz
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     files:
-      - none*  # Don't include any extra files
+      - none*
+    format_overrides:
+      - goos: linux
+        format: tar.gz
     wrap_in_directory: false
     allow_different_binary_count: true
+    mode: 0755
+    prefix: ""
 
 checksum:
   name_template: '{{ .ProjectName }}_{{ .Version }}_SHA256SUMS'
@@ -38,6 +41,7 @@ release:
   github:
     owner: wolfslicht
     name: rancher-node-engine-driver-sotc
+  name_template: "v{{ .Version }}"
 
 changelog:
   sort: asc

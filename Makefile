@@ -3,7 +3,7 @@ export PATH:=/usr/local/go/bin:$(PATH)
 exec_path := /usr/local/bin/
 exec_name := docker-machine-driver-otccce
 
-VERSION := 0.0.12
+VERSION := 0.0.17
 
 
 default: test build
